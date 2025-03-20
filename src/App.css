@@ -1,18 +1,111 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
+} */
+
+.App-logo {
+  width: 150px; /* Adjusted size */
+  height: auto;
+  margin-top: 1.8rem;
+  margin-bottom: 1.5rem;
+  object-fit: contain;
 }
 
+body {
+  background-color: #f3f4f6; /* Gray-100 */
+  font-family: Arial, sans-serif;
+
+  /* Flex settings to center content vertically + horizontally */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Occupy entire viewport height */
+  min-height: 100vh;
+
+  /* Prevent horizontal scrolling on mobile */
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+/* Input field styling */
+.input-field {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Submit button styling */
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+}
+
+/* Alert styling */
+.alert {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.alert-success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.small-error-msg {
+  color: #721c24;
+  font-size: small;
+  margin: -9px 0 8px 0;
+}
+
+/* Logo spin effect if needed */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* App header styling (unused if not referencing .App-header) */
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,5 +127,31 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* For smaller screens, place container near the top */
+@media (max-width: 480px) {
+  body {
+    align-items: flex-start; /* Push container to the top */
+    justify-content: center; /* Keep horizontal centering */
+  }
+  .container {
+    margin-top: 1rem;
+    max-width: 90%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  /* Increase the padding and font size for inputs */
+  .input-field {
+    padding: 14px 4px 14px 8px;         /* Increase padding for a bigger field */
+    font-size: 1rem;       /* Increase font size */
+  }
+
+  /* Increase the padding and font size for buttons */
+  .submit-btn {
+    padding: 14px;
+    font-size: 1rem;
   }
 }
