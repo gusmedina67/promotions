@@ -12,12 +12,19 @@ const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      // Clear the token from localStorage
-      localStorage.removeItem("cognito_access_token");
-      // Redirect to /admin/login (or your login path)
-      window.location.href = "/admin/login";
+    if (error.response) {
+      if (error.response.status === 401) {
+        localStorage.removeItem("cognito_access_token");
+        window.location.href = "/admin/login";
+      } 
+      else if (error.response.status === 400) {
+        // Construct a friendlier error object
+        const errMsg = error.response.data?.message || "Bad Request (400)";
+        // Return a custom error object
+        return Promise.reject(error);
+      }
     }
+    // If no special case, just reject the original error
     return Promise.reject(error);
   }
 );
@@ -34,12 +41,12 @@ export const submitWinnerDetails = (data) => {
   return api.post("/submit-winner", data);
 };
 
-export const createQRCode = (prize_type) => {
-  return api.post("/generate-qrcodes", { prize_type });
+export const createQRCode = (data, config = {}) => {
+  return api.post("/generate-qrcodes", data, config);
 };
 
-export const updateQRCode = (qr_code_id, prize_type) => {
-  return api.post("/update-prize", { qr_code_id, prize_type });
+export const updateQRCode = (data, config = {}) => {
+  return api.post("/update-prize", data, config);
 };
 
 export const fetchWinnersList = (config = {}) => {

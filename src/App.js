@@ -3,7 +3,7 @@ import AppRoutes from "./routes/Routes";
 
 export default function App() {
   useEffect(() => {
-    document.title = "ChilSpot";
+    document.title = "ChilSpot - Chilaquiles Irreverentes";
   }, []);
 
   return (

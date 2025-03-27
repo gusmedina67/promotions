@@ -64,7 +64,12 @@ export default function LandingPage() {
       setMessage(response.data.message);
       setOutcome(response.data.outcome || "NO_PRIZE");
     } catch (err) {
-      setError(err.response?.data?.message || "Ocurrió un error. Por favor intente de nuevo.");
+      console.error("Error in handleScan =>", err);
+      if (err.response && err.response.status === 400) {
+        setError(err.response.data.message || "¡Error de validación (400)!");
+      } else {
+        setError(err.response?.data?.message || "Ocurrió un error. Por favor intente de nuevo.");
+      }
     }
     setLoading(false);
   };
